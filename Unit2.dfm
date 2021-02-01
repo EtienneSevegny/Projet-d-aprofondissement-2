@@ -4,7 +4,7 @@ object Form2: TForm2
   Caption = 'Form2'
   ClientHeight = 498
   ClientWidth = 849
-  Color = clBtnFace
+  Color = clMenuHighlight
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -15,14 +15,22 @@ object Form2: TForm2
   PixelsPerInch = 96
   TextHeight = 13
   object dbtChanson_selection: TDBText
-    Left = 56
-    Top = 40
-    Width = 153
-    Height = 17
+    Left = 40
+    Top = 49
+    Width = 169
+    Height = 49
+    DataField = 'nom'
+    DataSource = tdAlbum
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
   end
   object gridChanson: TDBGrid
     Left = 8
-    Top = 160
+    Top = 161
     Width = 841
     Height = 337
     DataSource = tdChanson
@@ -32,7 +40,6 @@ object Form2: TForm2
     TitleFont.Height = -11
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
-    OnColEnter = gridChansonColEnter
   end
   object fdcChanson: TFDConnection
     Params.Strings = (
@@ -50,12 +57,29 @@ object Form2: TForm2
     Connection = fdcChanson
     SQL.Strings = (
       '')
-    Left = 720
-    Top = 24
+    Left = 656
+    Top = 32
+    ParamData = <
+      item
+        Name = 'intAlbum_id'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = 0
+      end>
   end
   object tdChanson: TDataSource
     DataSet = fdqChanson
-    Left = 600
-    Top = 72
+    Left = 624
+    Top = 96
+  end
+  object fdqAlbum: TFDQuery
+    Connection = fdcChanson
+    Left = 512
+    Top = 40
+  end
+  object tdAlbum: TDataSource
+    DataSet = fdqAlbum
+    Left = 504
+    Top = 96
   end
 end
