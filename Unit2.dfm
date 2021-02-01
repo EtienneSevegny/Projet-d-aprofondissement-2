@@ -2,7 +2,7 @@ object Form2: TForm2
   Left = 0
   Top = 0
   Caption = 'Form2'
-  ClientHeight = 498
+  ClientHeight = 497
   ClientWidth = 849
   Color = clMenuHighlight
   Font.Charset = DEFAULT_CHARSET
@@ -11,13 +11,14 @@ object Form2: TForm2
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poDesktopCenter
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object dbtChanson_selection: TDBText
     Left = 40
     Top = 49
-    Width = 169
+    Width = 369
     Height = 49
     DataField = 'nom'
     DataSource = tdAlbum
@@ -30,9 +31,9 @@ object Form2: TForm2
   end
   object gridChanson: TDBGrid
     Left = 8
-    Top = 161
-    Width = 841
-    Height = 337
+    Top = 184
+    Width = 833
+    Height = 305
     DataSource = tdChanson
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET

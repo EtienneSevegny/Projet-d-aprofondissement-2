@@ -36,16 +36,18 @@ implementation
 
 {$R *.dfm}
 
+uses Unit1, Unit3;
+
 
 procedure TForm2.FormCreate(Sender: TObject);
-var intAlbum_id:Integer;
+var test: String;
 begin
-  intAlbum_id := 1;
+  test := 'select nom as Nom, duree as Durée from chanson where album_id = '+Form3.intAlbum_id.ToString;
   fdqChanson.SQL.Clear;
-  fdqChanson.SQL.Add('select nom as Nom, duree as Durée from chanson where album_id = '+intAlbum_id.ToString);
+  fdqChanson.SQL.Add(test);
   fdqChanson.Active := True;
   fdqAlbum.SQL.Clear;
-  fdqAlbum.SQL.Add('select nom, annee from album where id = '+intAlbum_id.ToString);
+  fdqAlbum.SQL.Add('select nom, annee from album where id = '+Form3.intAlbum_id.ToString);
   fdqAlbum.Active := True;
   Form2.Caption := 'Chansons';
   gridChanson.Columns[0].Width := 700;
