@@ -29,6 +29,20 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
   end
+  object Label1: TLabel
+    Left = 540
+    Top = 65
+    Width = 78
+    Height = 13
+    Caption = 'Nom de l'#39'album :'
+  end
+  object Label2: TLabel
+    Left = 583
+    Top = 97
+    Width = 83
+    Height = 13
+    Caption = 'Ann'#233'e de sortie :'
+  end
   object Button1: TButton
     Left = 360
     Top = 136
@@ -51,10 +65,43 @@ object Form1: TForm1
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
   end
+  object btnReturn: TButton
+    Left = 766
+    Top = 8
+    Width = 75
+    Height = 25
+    Caption = 'Retour'
+    TabOrder = 2
+    OnClick = btnReturnClick
+  end
+  object edtAlbum_nom: TEdit
+    Left = 624
+    Top = 62
+    Width = 169
+    Height = 21
+    TabOrder = 3
+  end
+  object edtAnnee: TEdit
+    Left = 672
+    Top = 94
+    Width = 73
+    Height = 21
+    NumbersOnly = True
+    TabOrder = 4
+  end
+  object btnAjout_album: TButton
+    Left = 672
+    Top = 121
+    Width = 75
+    Height = 25
+    Caption = 'Ajouter'
+    TabOrder = 5
+    OnClick = btnAjout_albumClick
+  end
   object FDQuery1: TFDQuery
     Connection = FDConnection1
-    Left = 664
-    Top = 48
+    Left = 456
+    Top = 32
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
@@ -65,22 +112,27 @@ object Form1: TForm1
       'DriverID=MySQL')
     Connected = True
     LoginPrompt = False
-    Left = 568
-    Top = 32
+    Left = 392
+    Top = 24
   end
   object DataSource1: TDataSource
     DataSet = FDQuery1
-    Left = 576
-    Top = 88
+    Left = 392
+    Top = 72
   end
   object FDQuery2: TFDQuery
     Connection = FDConnection1
-    Left = 752
-    Top = 48
+    Left = 440
+    Top = 88
   end
   object DataSource2: TDataSource
     DataSet = FDQuery2
-    Left = 752
-    Top = 112
+    Left = 488
+    Top = 80
+  end
+  object fdqAlbum_ajout: TFDQuery
+    Connection = FDConnection1
+    Left = 288
+    Top = 120
   end
 end

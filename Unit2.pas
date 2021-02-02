@@ -21,7 +21,9 @@ type
     dbtChanson_selection: TDBText;
     fdqAlbum: TFDQuery;
     tdAlbum: TDataSource;
+    btnReturn: TButton;
     procedure FormCreate(Sender: TObject);
+    procedure btnReturnClick(Sender: TObject);
 
   private
     { Déclarations privées }
@@ -38,6 +40,11 @@ implementation
 
 uses Unit1, Unit3;
 
+
+procedure TForm2.btnReturnClick(Sender: TObject);
+begin
+  Form2.Close;
+end;
 
 procedure TForm2.FormCreate(Sender: TObject);
 var test: String;

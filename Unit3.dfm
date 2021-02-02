@@ -15,6 +15,28 @@ object Form3: TForm3
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
+  object Label1: TLabel
+    Left = 24
+    Top = 48
+    Width = 248
+    Height = 33
+    Caption = 'Biblioth'#232'que d'#39'album'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object lblArtiste: TLabel
+    Left = 550
+    Top = 67
+    Width = 148
+    Height = 13
+    Caption = 'Nom de l'#39'artiste ou du groupe :'
+    Color = clBtnText
+    ParentColor = False
+  end
   object Button1: TButton
     Left = 360
     Top = 136
@@ -37,6 +59,31 @@ object Form3: TForm3
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
   end
+  object btnClose: TButton
+    Left = 766
+    Top = 8
+    Width = 75
+    Height = 25
+    Caption = 'Fermer'
+    TabOrder = 2
+    OnClick = btnCloseClick
+  end
+  object edtArtiste: TEdit
+    Left = 704
+    Top = 64
+    Width = 121
+    Height = 21
+    TabOrder = 3
+  end
+  object btnArtiste_ajout: TButton
+    Left = 656
+    Top = 91
+    Width = 75
+    Height = 25
+    Caption = 'Ajouter'
+    TabOrder = 4
+    OnClick = btnArtiste_ajoutClick
+  end
   object FDConnection1: TFDConnection
     Params.Strings = (
       'User_Name=root'
@@ -46,17 +93,22 @@ object Form3: TForm3
       'DriverID=MySQL')
     Connected = True
     LoginPrompt = False
-    Left = 632
-    Top = 64
+    Left = 504
+    Top = 24
   end
   object FDQuery1: TFDQuery
     Connection = FDConnection1
-    Left = 648
-    Top = 120
+    Left = 504
+    Top = 40
   end
   object DataSource1: TDataSource
     DataSet = FDQuery1
-    Left = 568
-    Top = 32
+    Left = 504
+    Top = 56
+  end
+  object fdqArtiste_ajout: TFDQuery
+    Connection = FDConnection1
+    Left = 408
+    Top = 48
   end
 end

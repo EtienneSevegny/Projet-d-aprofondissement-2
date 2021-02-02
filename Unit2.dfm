@@ -42,6 +42,15 @@ object Form2: TForm2
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
   end
+  object btnReturn: TButton
+    Left = 766
+    Top = 8
+    Width = 75
+    Height = 25
+    Caption = 'Retour'
+    TabOrder = 1
+    OnClick = btnReturnClick
+  end
   object fdcChanson: TFDConnection
     Params.Strings = (
       'User_Name=root'
