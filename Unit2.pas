@@ -10,11 +10,10 @@ uses
   FireDAC.Phys.MySQLDef, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
   FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
   FireDAC.Comp.Client, Vcl.DBCGrids, Vcl.DBCtrls, Vcl.ExtCtrls, Vcl.Grids,
-  Vcl.DBGrids, Vcl.StdCtrls;
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.WinXPickers;
 
 type
   TForm2 = class(TForm)
-    fdcChanson: TFDConnection;
     fdqChanson: TFDQuery;
     tdChanson: TDataSource;
     gridChanson: TDBGrid;
@@ -22,8 +21,19 @@ type
     fdqAlbum: TFDQuery;
     tdAlbum: TDataSource;
     btnReturn: TButton;
+    Label1: TLabel;
+    edtChanson_nom: TEdit;
+    Label2: TLabel;
+    fdqChanson_ajout: TFDQuery;
+    btnAjout_album: TButton;
+    edtMinute: TEdit;
+    edtSeconde: TEdit;
+    btnSupprimer: TButton;
+    fdqSupression_chanson: TFDQuery;
     procedure FormCreate(Sender: TObject);
     procedure btnReturnClick(Sender: TObject);
+    procedure btnAjout_albumClick(Sender: TObject);
+    procedure btnSupprimerClick(Sender: TObject);
 
   private
     { Déclarations privées }
@@ -41,23 +51,94 @@ implementation
 uses Unit1, Unit3;
 
 
+procedure TForm2.btnAjout_albumClick(Sender: TObject);
+var intMinute:integer;
+var intSeconde:integer;
+var strMinute:string;
+var strSeconde:string;
+var strTemps:string;
+var strChanson:string;
+begin
+  strMinute := edtMinute.Text;
+  strSeconde := edtSeconde.Text;
+  intMinute := strMinute.ToInteger;
+  intSeconde := strSeconde.ToInteger;
+  if intMinute < 60 then
+    if intSeconde < 60 then
+      begin
+        if intMinute < 10 then
+          begin
+            if intSeconde < 10 then
+              begin
+                strTemps := '000'+intMinute.ToString+'0'+intSeconde.ToString;
+              end
+            else
+              strTemps := '000'+intMinute.ToString+intSeconde.ToString;
+          end
+        else
+          strTemps := '00'+intMinute.ToString+intSeconde.ToString;
+
+        strChanson := edtChanson_nom.Text;
+        if strChanson.Length > 2 then
+          begin
+            fdqChanson_ajout.SQL.Clear;
+            fdqChanson_ajout.ExecSQL('INSERT INTO chanson (nom, duree, album_id) Values("'+strChanson+'",'+ strTemps +','+Form3.intAlbum_id.ToString+')');
+            fdqChanson.SQL.Clear;
+            fdqChanson.SQL.Add('select id, nom as Nom, duree as Durée from chanson where album_id = '+Form3.intAlbum_id.ToString);
+            fdqChanson.Active := True;
+            gridChanson.Columns[0].Visible := False;
+            gridChanson.Columns[1].Width := 700;
+            gridChanson.Columns[2].Width := 100;
+            Application.MessageBox(PChar(strChanson+' a été ajouté à la liste.'),PChar('Ajout réussi'),MB_ICONASTERISK);
+          end
+        else
+          Application.MessageBox(PChar('Vous ne pouvez pas ajouter une chanson avec un nom ayant moins de 2 caractères. '),PChar('Erreur'),MB_ICONERROR);
+      end
+    else
+      begin
+      Application.MessageBox(PChar('Vous ne pouvez pas mettre plus que 59 secondes.'),PChar('Erreur'),MB_ICONERROR);
+      end
+  else
+      begin
+      Application.MessageBox(PChar('Vous ne pouvez pas mettre plus que 59 minutes.'),PChar('Erreur'),MB_ICONERROR);
+      end
+end;
+
 procedure TForm2.btnReturnClick(Sender: TObject);
 begin
   Form2.Close;
 end;
 
-procedure TForm2.FormCreate(Sender: TObject);
-var test: String;
+
+procedure TForm2.btnSupprimerClick(Sender: TObject);
+var strSupprimer: string;
 begin
-  test := 'select nom as Nom, duree as Durée from chanson where album_id = '+Form3.intAlbum_id.ToString;
+  if Application.MessageBox(PChar('Voulez-vous vraiment supprimer la chanson '+gridChanson.Fields[1].AsString+'?'),PChar('Supression'), MB_ICONQUESTION or MB_YESNO) = IDYES then
+    begin
+      strSupprimer := gridChanson.Fields[1].AsString;
+      fdqSupression_chanson.SQL.Clear;
+      fdqSupression_chanson.ExecSQL('delete from chanson where id =' + gridChanson.Fields[0].AsString);
+      fdqChanson.SQL.Clear;
+      fdqChanson.SQL.Add('select id, nom as Nom, duree as Durée from chanson where album_id = '+Form3.intAlbum_id.ToString);
+      fdqChanson.Active := True;
+      gridChanson.Columns[0].Visible := False;
+      gridChanson.Columns[1].Width := 700;
+      gridChanson.Columns[2].Width := 100;
+      Application.MessageBox(PChar(strSupprimer + ' a été supprimé avec succès.'),PChar('Suppression'),MB_ICONASTERISK)
+    end
+end;
+
+procedure TForm2.FormCreate(Sender: TObject);
+begin
   fdqChanson.SQL.Clear;
-  fdqChanson.SQL.Add(test);
+  fdqChanson.SQL.Add('select id, nom as Nom, duree as Durée from chanson where album_id = '+Form3.intAlbum_id.ToString);
   fdqChanson.Active := True;
   fdqAlbum.SQL.Clear;
-  fdqAlbum.SQL.Add('select nom, annee from album where id = '+Form3.intAlbum_id.ToString);
+  fdqAlbum.SQL.Add('select nom from album where id = '+Form3.intAlbum_id.ToString);
   fdqAlbum.Active := True;
   Form2.Caption := 'Chansons';
-  gridChanson.Columns[0].Width := 700;
-  gridChanson.Columns[1].Width := 100;
+  gridChanson.Columns[0].Visible := False;
+  gridChanson.Columns[1].Width := 700;
+  gridChanson.Columns[2].Width := 100;
 end;
 end.

@@ -1,19 +1,4 @@
-﻿[Button1]
-Coordinates=10,146,59,58
-
-[FDQuery1]
-Coordinates=144,78,73,58
-
-[DBGrid1]
-Coordinates=79,146,64,36
-
-[DataSource1]
-Coordinates=0,0,89,36
-
-[FDConnection1]
-Coordinates=205,1,104,36
-
-[Form2.fdqChanson]
+﻿[Form2.fdqChanson]
 Coordinates=10,78,124,58
 
 [Form2.fdqAlbum]
@@ -26,6 +11,18 @@ Coordinates=348,1,117,36
 Coordinates=239,173,102,36
 
 []
-Coordinates=129,10,94,58
+Coordinates=205,1,104,36
 Visible=True
+
+[fdqAlbum]
+Coordinates=144,78,73,58
+
+[fdqAlbum_selection]
+Coordinates=10,146,59,58
+
+[gridAlbum]
+Coordinates=79,146,64,36
+
+[dtsAlbum]
+Coordinates=0,0,89,36
 

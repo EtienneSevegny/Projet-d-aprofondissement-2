@@ -1,0 +1,138 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 498
+  ClientWidth = 849
+  Color = clMenuHighlight
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object dbtArtiste_selection: TDBText
+    Left = 40
+    Top = 49
+    Width = 369
+    Height = 49
+    DataField = 'nom'
+    DataSource = DataSource2
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -27
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label1: TLabel
+    Left = 540
+    Top = 65
+    Width = 78
+    Height = 13
+    Caption = 'Nom de l'#39'album :'
+  end
+  object Label2: TLabel
+    Left = 583
+    Top = 97
+    Width = 83
+    Height = 13
+    Caption = 'Ann'#233'e de sortie :'
+  end
+  object Button1: TButton
+    Left = 360
+    Top = 136
+    Width = 137
+    Height = 25
+    Caption = 'S'#233'lectionner un album'
+    TabOrder = 0
+    OnClick = Button1Click
+  end
+  object DBGrid1: TDBGrid
+    Left = 8
+    Top = 184
+    Width = 833
+    Height = 306
+    DataSource = DataSource1
+    TabOrder = 1
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
+  object btnReturn: TButton
+    Left = 766
+    Top = 8
+    Width = 75
+    Height = 25
+    Caption = 'Retour'
+    TabOrder = 2
+    OnClick = btnReturnClick
+  end
+  object edtAlbum_nom: TEdit
+    Left = 624
+    Top = 62
+    Width = 169
+    Height = 21
+    TabOrder = 3
+  end
+  object edtAnnee: TEdit
+    Left = 672
+    Top = 94
+    Width = 73
+    Height = 21
+    NumbersOnly = True
+    TabOrder = 4
+  end
+  object btnAjout_album: TButton
+    Left = 672
+    Top = 121
+    Width = 75
+    Height = 25
+    Caption = 'Ajouter'
+    TabOrder = 5
+    OnClick = btnAjout_albumClick
+  end
+  object FDQuery1: TFDQuery
+    Connection = FDConnection1
+    Left = 456
+    Top = 32
+  end
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'User_Name=root'
+      'Password=Sema4545'
+      'Server=localhost'
+      'Database=musiclibrary'
+      'DriverID=MySQL')
+    Connected = True
+    LoginPrompt = False
+    Left = 392
+    Top = 24
+  end
+  object DataSource1: TDataSource
+    DataSet = FDQuery1
+    Left = 392
+    Top = 72
+  end
+  object FDQuery2: TFDQuery
+    Connection = FDConnection1
+    Left = 440
+    Top = 88
+  end
+  object DataSource2: TDataSource
+    DataSet = FDQuery2
+    Left = 488
+    Top = 80
+  end
+  object fdqAlbum_ajout: TFDQuery
+    Connection = FDConnection1
+    Left = 288
+    Top = 120
+  end
+end

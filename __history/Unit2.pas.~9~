@@ -1,0 +1,81 @@
+unit Unit2;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.MySQL,
+  FireDAC.Phys.MySQLDef, FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
+  FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, Vcl.DBCGrids, Vcl.DBCtrls, Vcl.ExtCtrls, Vcl.Grids,
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.WinXPickers;
+
+type
+  TForm2 = class(TForm)
+    fdqChanson: TFDQuery;
+    tdChanson: TDataSource;
+    gridChanson: TDBGrid;
+    dbtChanson_selection: TDBText;
+    fdqAlbum: TFDQuery;
+    tdAlbum: TDataSource;
+    btnReturn: TButton;
+    Label1: TLabel;
+    edtAlbum_nom: TEdit;
+    Label2: TLabel;
+    fdqChanson_ajout: TFDQuery;
+    btnAjout_album: TButton;
+    edtMinute: TEdit;
+    edtSeconde: TEdit;
+    procedure FormCreate(Sender: TObject);
+    procedure btnReturnClick(Sender: TObject);
+    procedure btnAjout_albumClick(Sender: TObject);
+
+  private
+    { Déclarations privées }
+  public
+    { Déclarations publiques }
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+{$R *.dfm}
+
+uses Unit1, Unit3;
+
+
+procedure TForm2.btnAjout_albumClick(Sender: TObject);
+var intMinute:integer;
+var intSeconde:integer;
+begin
+  intMinute := edtMinute.ToInteger();
+  intSeconde := edtSecondeToInteger();
+end;
+
+procedure TForm2.btnReturnClick(Sender: TObject);
+begin
+  Form2.Close;
+end;
+
+
+procedure TForm2.FormCreate(Sender: TObject);
+var test: String;
+begin
+  test := 'select nom as Nom, duree as Durée from chanson where album_id = '+Form3.intAlbum_id.ToString;
+  fdqChanson.SQL.Clear;
+  fdqChanson.SQL.Add(test);
+  fdqChanson.Active := True;
+  fdqAlbum.SQL.Clear;
+  fdqAlbum.SQL.Add('select nom, annee from album where id = '+Form3.intAlbum_id.ToString);
+  fdqAlbum.Active := True;
+  Form2.Caption := 'Chansons';
+  fdqChanson.Refresh;
+  fdqAlbum.Refresh;
+  gridChanson.Columns[0].Width := 700;
+  gridChanson.Columns[1].Width := 100;
+end;
+end.

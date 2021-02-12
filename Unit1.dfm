@@ -16,12 +16,12 @@ object Form1: TForm1
   PixelsPerInch = 96
   TextHeight = 13
   object dbtArtiste_selection: TDBText
-    Left = 40
-    Top = 49
-    Width = 369
-    Height = 49
+    Left = 24
+    Top = 24
+    Width = 321
+    Height = 48
     DataField = 'nom'
-    DataSource = DataSource2
+    DataSource = dtsArtiste
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -27
@@ -43,21 +43,22 @@ object Form1: TForm1
     Height = 13
     Caption = 'Ann'#233'e de sortie :'
   end
-  object Button1: TButton
-    Left = 360
-    Top = 136
+  object fdqAlbum_selection: TButton
+    Left = 336
+    Top = 145
     Width = 137
     Height = 25
     Caption = 'S'#233'lectionner un album'
     TabOrder = 0
-    OnClick = Button1Click
+    OnClick = fdqAlbum_selectionClick
   end
-  object DBGrid1: TDBGrid
+  object gridAlbum: TDBGrid
     Left = 8
     Top = 184
     Width = 833
     Height = 306
-    DataSource = DataSource1
+    DataSource = dtsAlbum
+    ReadOnly = True
     TabOrder = 1
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
@@ -98,41 +99,43 @@ object Form1: TForm1
     TabOrder = 5
     OnClick = btnAjout_albumClick
   end
-  object FDQuery1: TFDQuery
-    Connection = FDConnection1
-    Left = 456
-    Top = 32
+  object btnSupprimer: TButton
+    Left = 479
+    Top = 145
+    Width = 75
+    Height = 25
+    Caption = 'Supprimer'
+    TabOrder = 6
+    OnClick = btnSupprimerClick
   end
-  object FDConnection1: TFDConnection
-    Params.Strings = (
-      'User_Name=root'
-      'Password=Sema4545'
-      'Server=localhost'
-      'Database=musiclibrary'
-      'DriverID=MySQL')
-    Connected = True
-    LoginPrompt = False
-    Left = 392
+  object fdqAlbum: TFDQuery
+    Connection = Form3.fdcMusic_library
+    Left = 424
     Top = 24
   end
-  object DataSource1: TDataSource
-    DataSet = FDQuery1
-    Left = 392
-    Top = 72
+  object dtsAlbum: TDataSource
+    DataSet = fdqAlbum
+    Left = 424
+    Top = 40
   end
-  object FDQuery2: TFDQuery
-    Connection = FDConnection1
-    Left = 440
-    Top = 88
+  object fdqArtiste_nom: TFDQuery
+    Connection = Form3.fdcMusic_library
+    Left = 504
+    Top = 24
   end
-  object DataSource2: TDataSource
-    DataSet = FDQuery2
-    Left = 488
-    Top = 80
+  object dtsArtiste: TDataSource
+    DataSet = fdqArtiste_nom
+    Left = 504
+    Top = 40
   end
   object fdqAlbum_ajout: TFDQuery
-    Connection = FDConnection1
-    Left = 288
-    Top = 120
+    Connection = Form3.fdcMusic_library
+    Left = 336
+    Top = 24
+  end
+  object fdqSupression_album: TFDQuery
+    Connection = Form3.fdcMusic_library
+    Left = 320
+    Top = 72
   end
 end

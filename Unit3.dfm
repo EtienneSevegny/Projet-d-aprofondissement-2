@@ -17,10 +17,10 @@ object Form3: TForm3
   TextHeight = 13
   object Label1: TLabel
     Left = 24
-    Top = 48
-    Width = 248
+    Top = 24
+    Width = 301
     Height = 33
-    Caption = 'Biblioth'#232'que d'#39'album'
+    Caption = 'Biblioth'#232'que de chansons'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -27
@@ -37,21 +37,29 @@ object Form3: TForm3
     Color = clBtnText
     ParentColor = False
   end
-  object Button1: TButton
-    Left = 360
-    Top = 136
+  object Label2: TLabel
+    Left = 48
+    Top = 139
+    Width = 58
+    Height = 13
+    Caption = 'Recherche :'
+  end
+  object btnArtiste_select: TButton
+    Left = 320
+    Top = 134
     Width = 145
     Height = 25
     Caption = 'S'#233'lectionner un artiste'
     TabOrder = 0
-    OnClick = Button1Click
+    OnClick = btnArtiste_selectClick
   end
-  object DBGrid1: TDBGrid
+  object gridArtiste: TDBGrid
     Left = 8
     Top = 177
     Width = 838
     Height = 313
-    DataSource = DataSource1
+    DataSource = dtsArtiste
+    ReadOnly = True
     TabOrder = 1
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
@@ -60,7 +68,7 @@ object Form3: TForm3
     TitleFont.Style = []
   end
   object btnClose: TButton
-    Left = 766
+    Left = 772
     Top = 8
     Width = 75
     Height = 25
@@ -84,7 +92,24 @@ object Form3: TForm3
     TabOrder = 4
     OnClick = btnArtiste_ajoutClick
   end
-  object FDConnection1: TFDConnection
+  object btnSupprimer: TButton
+    Left = 471
+    Top = 134
+    Width = 75
+    Height = 25
+    Caption = 'Supprimer'
+    TabOrder = 5
+    OnClick = btnSupprimerClick
+  end
+  object edtSearch: TEdit
+    Left = 112
+    Top = 136
+    Width = 160
+    Height = 21
+    TabOrder = 6
+    OnChange = edtSearchChange
+  end
+  object fdcMusic_library: TFDConnection
     Params.Strings = (
       'User_Name=root'
       'Password=Sema4545'
@@ -96,19 +121,24 @@ object Form3: TForm3
     Left = 504
     Top = 24
   end
-  object FDQuery1: TFDQuery
-    Connection = FDConnection1
+  object fdqArtiste: TFDQuery
+    Connection = fdcMusic_library
     Left = 504
     Top = 40
   end
-  object DataSource1: TDataSource
-    DataSet = FDQuery1
+  object dtsArtiste: TDataSource
+    DataSet = fdqArtiste
     Left = 504
     Top = 56
   end
   object fdqArtiste_ajout: TFDQuery
-    Connection = FDConnection1
+    Connection = fdcMusic_library
     Left = 408
     Top = 48
+  end
+  object fdqSuppression_artiste: TFDQuery
+    Connection = fdcMusic_library
+    Left = 408
+    Top = 64
   end
 end

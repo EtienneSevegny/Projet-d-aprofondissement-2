@@ -14,14 +14,13 @@ uses
 
 type
   TForm1 = class(TForm)
-    FDQuery1: TFDQuery;
-    FDConnection1: TFDConnection;
-    DataSource1: TDataSource;
-    Button1: TButton;
-    DBGrid1: TDBGrid;
+    fdqAlbum: TFDQuery;
+    dtsAlbum: TDataSource;
+    fdqAlbum_selection: TButton;
+    gridAlbum: TDBGrid;
     dbtArtiste_selection: TDBText;
-    FDQuery2: TFDQuery;
-    DataSource2: TDataSource;
+    fdqArtiste_nom: TFDQuery;
+    dtsArtiste: TDataSource;
     btnReturn: TButton;
     edtAlbum_nom: TEdit;
     edtAnnee: TEdit;
@@ -29,10 +28,13 @@ type
     Label1: TLabel;
     Label2: TLabel;
     fdqAlbum_ajout: TFDQuery;
-    procedure Button1Click(Sender: TObject);
+    btnSupprimer: TButton;
+    fdqSupression_album: TFDQuery;
+    procedure fdqAlbum_selectionClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnReturnClick(Sender: TObject);
     procedure btnAjout_albumClick(Sender: TObject);
+    procedure btnSupprimerClick(Sender: TObject);
   private
     { Déclarations privées }
   public
@@ -60,12 +62,12 @@ begin
       begin
         fdqAlbum_ajout.SQL.Clear;
         fdqAlbum_ajout.ExecSQL('INSERT INTO album (nom, annee, artiste_id) Values("'+strAlbum_nom+'",'+intAnnee.ToString+','+Form3.intArtiste_id.ToString+')');
-        FDQuery1.SQL.Clear;
-        FDQuery1.SQL.Add('select id, nom as Nom, annee as "Année de sortie" from album where artiste_id = '+ Form3.intArtiste_id.ToString);
-        FDQuery1.Active := True;
-        DBGrid1.Columns[0].Visible := False;
-        DBGrid1.Columns[1].Width := 700;
-        DBGrid1.Columns[2].Width := 100;
+        fdqAlbum.SQL.Clear;
+        fdqAlbum.SQL.Add('select id, nom as Nom, annee as "Année de sortie" from album where artiste_id = '+ Form3.intArtiste_id.ToString + ' order by annee');
+        fdqAlbum.Active := True;
+        gridAlbum.Columns[0].Visible := False;
+        gridAlbum.Columns[1].Width := 700;
+        gridAlbum.Columns[2].Width := 100;
         Application.MessageBox(PChar(strAlbum_nom+' a été ajouté à la liste.'),PChar('Ajout réussi'),MB_ICONASTERISK);
       end
     else
@@ -80,18 +82,44 @@ begin
   Form1.Close;
 end;
 
-procedure TForm1.Button1Click(Sender: TObject);
+procedure TForm1.btnSupprimerClick(Sender: TObject);
+var strSupprimer:string;
+begin
+  if Application.MessageBox(PChar('Voulez-vous vraiment supprimer '+gridAlbum.Fields[1].AsString+'?'),PChar('Supression'), MB_ICONQUESTION or MB_YESNO) = IDYES then
+    begin
+      strSupprimer := gridAlbum.Fields[1].AsString;
+      try
+        fdqSupression_album.SQL.Clear;
+        fdqSupression_album.ExecSQL('delete from album where id =' + gridAlbum.Fields[0].AsString);
+        fdqSupression_album.SQL.Clear;
+        fdqSupression_album.ExecSQL('delete from album where id =' + gridAlbum.Fields[0].AsString);
+        fdqAlbum.SQL.Clear;
+        fdqAlbum.SQL.Add('select id, nom as Nom, annee as "Année de sortie" from album where artiste_id = '+ Form3.intArtiste_id.ToString + ' order by annee');
+        fdqAlbum.Active := True;
+        gridAlbum.Columns[0].Visible := False;
+        gridAlbum.Columns[1].Width := 700;
+        gridAlbum.Columns[2].Width := 100;
+        Application.MessageBox(PChar(strSupprimer + ' a été supprimé avec succès.'),PChar('Suppression'),MB_ICONASTERISK)
+      except
+        on E: EFDDBEngineException do begin
+          Application.MessageBox(PChar('Vous ne pouvez pas supprimer cet album car il contient encore des chansons.'),PChar('Suppression'),MB_ICONERROR);
+        end
+      end
+    end
+end;
+
+procedure TForm1.fdqAlbum_selectionClick(Sender: TObject);
 Begin
-  IF(DBGrid1.Fields[0].AsInteger = 0)then
+  IF(gridAlbum.Fields[0].AsInteger = 0)then
     begin
       Application.MessageBox(PChar('Vous ne pouvez pas sélectionner une ligne vide.'),PChar('Erreur'),MB_ICONERROR)
     end
   ELSE
     begin
-      Form3.intAlbum_id := DBGrid1.Fields[0].AsInteger;
+      Form3.intAlbum_id := gridAlbum.Fields[0].AsInteger;
       with TForm2.Create(nil) do
       try
-        Form1.hide;
+        Form1.Hide;
         Form2.ShowModal;
       finally
         Form1.Show;
@@ -102,16 +130,18 @@ end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-  FDQuery1.SQL.Clear;
   Form1.Caption := 'Albums';
-  FDQuery1.SQL.Add('select id, nom as Nom, annee as "Année de sortie" from album where artiste_id = '+ Form3.intArtiste_id.ToString);
-  FDQuery1.Active := True;
-  FDQuery2.SQL.Clear;
-  FDQuery2.SQL.Add('select nom from artiste where id = '+Form3.intArtiste_id.ToString);
-  FDQuery2.Active := True;
-  DBGrid1.Columns[0].Visible := False;
-  DBGrid1.Columns[1].Width := 700;
-  DBGrid1.Columns[2].Width := 100;
+  fdqAlbum.SQL.Clear;
+  fdqAlbum.SQL.Add('select id, nom as Nom, annee as "Année de sortie" from album where artiste_id = '+ Form3.intArtiste_id.ToString + ' order by annee');
+  fdqAlbum.Open;
+
+  fdqArtiste_nom.SQL.Clear;
+  fdqArtiste_nom.SQL.Add('select nom from artiste where id = '+Form3.intArtiste_id.ToString);
+  fdqArtiste_nom.Open;
+
+  gridAlbum.Columns[0].Visible := False;
+  gridAlbum.Columns[1].Width := 700;
+  gridAlbum.Columns[2].Width := 100;
 end;
 
 end.
