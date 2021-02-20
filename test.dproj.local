@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899-12-30 00:00:00.000.390,=D:\Documents\Embarcadero\Studio\Projets\DBGrid1.pas</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.822,D:\Documents\Embarcadero\Studio\Projets\DBGrid1.pas=</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.731,=D:\Documents\Embarcadero\Studio\Projets\Unit4.pas</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.867,D:\Documents\Embarcadero\Studio\Projets\Unit4.pas=</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.796,D:\Documents\Embarcadero\Studio\Projets\Unit1.pas=</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.014,=D:\Documents\Embarcadero\Studio\Projets\Unit3.pas</Transaction>
     <Transaction>1899-12-30 00:00:00.000.505,=D:\Documents\Embarcadero\Studio\Projets\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.796,D:\Documents\Embarcadero\Studio\Projets\Unit1.pas=</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.822,D:\Documents\Embarcadero\Studio\Projets\DBGrid1.pas=</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.390,=D:\Documents\Embarcadero\Studio\Projets\DBGrid1.pas</Transaction>
     <Transaction>1899-12-30 00:00:00.000.839,=D:\Documents\Embarcadero\Studio\Projets\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.014,=D:\Documents\Embarcadero\Studio\Projets\Unit3.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.924,D:\Documents\Embarcadero\Studio\Projets\Project1.dproj=D:\Documents\Embarcadero\Studio\Projets\test.dproj</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.901,D:\Documents\Embarcadero\Studio\Projets\Unit1.pas=D:\Documents\Embarcadero\Studio\Projets\affichagetest.pas</Transaction>
     <Transaction>1899-12-30 00:00:00.000.094,=D:\Documents\Embarcadero\Studio\Projets\Unit1.pas</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.975,D:\Documents\Embarcadero\Studio\Projets\bd.pas=D:\Documents\Embarcadero\Studio\Projets\Unit2.pas</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.993,=D:\Documents\Embarcadero\Studio\Projets\Unit2.pas</Transaction>
     <Transaction>1899-12-30 00:00:00.000.478,=D:\Documents\Embarcadero\Studio\Projets\Unit2.pas</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.975,D:\Documents\Embarcadero\Studio\Projets\bd.dfm=D:\Documents\Embarcadero\Studio\Projets\Unit2.dfm</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.993,=D:\Documents\Embarcadero\Studio\Projets\Unit2.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.975,D:\Documents\Embarcadero\Studio\Projets\Unit2.pas=D:\Documents\Embarcadero\Studio\Projets\bd.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.901,D:\Documents\Embarcadero\Studio\Projets\Unit1.dfm=D:\Documents\Embarcadero\Studio\Projets\affichagetest.dfm</Transaction>
     <Transaction>1899-12-30 00:00:00.000.743,D:\Documents\Embarcadero\Studio\Projets\bd.pas=</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.924,D:\Documents\Embarcadero\Studio\Projets\test.dproj=D:\Documents\Embarcadero\Studio\Projets\Project1.dproj</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.901,D:\Documents\Embarcadero\Studio\Projets\affichagetest.dfm=D:\Documents\Embarcadero\Studio\Projets\Unit1.dfm</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.867,D:\Documents\Embarcadero\Studio\Projets\Unit4.pas=</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.731,=D:\Documents\Embarcadero\Studio\Projets\Unit4.pas</Transaction>
     <Transaction>1899-12-30 00:00:00.000.047,D:\Documents\Embarcadero\Studio\Projets\affichagetest.pas=</Transaction>
-    <Transaction>1899-12-30 00:00:00.000.901,D:\Documents\Embarcadero\Studio\Projets\affichagetest.pas=D:\Documents\Embarcadero\Studio\Projets\Unit1.pas</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.975,D:\Documents\Embarcadero\Studio\Projets\Unit2.dfm=D:\Documents\Embarcadero\Studio\Projets\bd.dfm</Transaction>
   </Transactions>
 </BorlandProject>

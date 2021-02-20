@@ -1,7 +1,5 @@
 unit Unit3;
-//Étienne Sévégny (1737508)
-//Unit 3
-//Affichage, création et supression d'artistes
+
 interface
 
 uses
@@ -51,8 +49,7 @@ var
 implementation
 
 {$R *.dfm}
-//btnArtiste_ajoutClick
-//Ajoute un artiste après vérification des données
+
 procedure TForm3.btnArtiste_ajoutClick(Sender: TObject);
 var strArtiste_nom: string;
 begin
@@ -70,15 +67,13 @@ begin
   else
     Application.MessageBox(PChar('Vous ne pouvez pas ajouter un artiste avec un nom ayant moins de 2 caractères. '),PChar('Erreur'),MB_ICONERROR);
 end;
-//btnCloseClick
-//Ferme la form.
+
 procedure TForm3.btnCloseClick(Sender: TObject);
 begin
   Form3.Close;
 end;
 
-//btnSupprimerClick
-//Supprime un artiste s'il n'a pas d'albums.
+
 procedure TForm3.btnSupprimerClick(Sender: TObject);
 var strSupprimer: string;
 begin
@@ -100,8 +95,7 @@ begin
         end;
     end;
 end;
-//edtSearchChange
-//Recherche d'un artiste
+
 procedure TForm3.edtSearchChange(Sender: TObject);
 var strSearch: string;
 begin
@@ -120,16 +114,15 @@ begin
     end;
   gridArtiste.Columns[0].Visible := False;
 end;
-//btnArtiste_selectClick
-//Selectionne un artiste et va dans le formulaire qui affiche les albums.
+
 procedure TForm3.btnArtiste_selectClick(Sender: TObject);
 begin
   intArtiste_id := gridArtiste.Fields[0].AsInteger;
-  if(gridArtiste.Fields[0].AsInteger = 0)then
+  IF(gridArtiste.Fields[0].AsInteger = 0)then
     begin
       Application.MessageBox(PChar('Vous ne pouvez pas sélectionner une ligne vide.'),PChar('Erreur'),MB_ICONERROR)
     end
-  else
+  ELSE
     begin
       with TForm1.Create(nil) do
       try
@@ -143,8 +136,7 @@ begin
 end;
 
 
-//FormCreate
-//Affiche le form et modifie la grid pour que l'affichage soit correcte.
+
 procedure TForm3.FormCreate(Sender: TObject);
 begin
   fdqArtiste.SQL.Clear;

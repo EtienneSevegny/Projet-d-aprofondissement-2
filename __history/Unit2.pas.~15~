@@ -1,7 +1,5 @@
 unit Unit2;
-//Étienne Sévégny (1737508)
-//Unit 2
-//Affichage, création et supression de chansons
+
 interface
 
 uses
@@ -27,14 +25,14 @@ type
     edtChanson_nom: TEdit;
     Label2: TLabel;
     fdqChanson_ajout: TFDQuery;
-    btnAjout_chanson: TButton;
+    btnAjout_album: TButton;
     edtMinute: TEdit;
     edtSeconde: TEdit;
     btnSupprimer: TButton;
     fdqSupression_chanson: TFDQuery;
     procedure FormCreate(Sender: TObject);
     procedure btnReturnClick(Sender: TObject);
-    procedure btnAjout_chansonClick(Sender: TObject);
+    procedure btnAjout_albumClick(Sender: TObject);
     procedure btnSupprimerClick(Sender: TObject);
 
   private
@@ -52,9 +50,8 @@ implementation
 
 uses Unit1, Unit3;
 
-//btnAjout_albumClick
-//Ajoute une chanson lorsque le bouton est pressé et qu'une vérification des données est fait.
-procedure TForm2.btnAjout_chansonClick(Sender: TObject);
+
+procedure TForm2.btnAjout_albumClick(Sender: TObject);
 var intMinute:integer;
 var intSeconde:integer;
 var strMinute:string;
@@ -106,15 +103,13 @@ begin
       Application.MessageBox(PChar('Vous ne pouvez pas mettre plus que 59 minutes.'),PChar('Erreur'),MB_ICONERROR);
       end
 end;
-//btnReturnClick
-//Retourne à la page d'albums.
+
 procedure TForm2.btnReturnClick(Sender: TObject);
 begin
   Form2.Close;
 end;
 
-//btnSupprimerClick
-//Supprime une chanson.
+
 procedure TForm2.btnSupprimerClick(Sender: TObject);
 var strSupprimer: string;
 begin
@@ -132,8 +127,7 @@ begin
       Application.MessageBox(PChar(strSupprimer + ' a été supprimé avec succès.'),PChar('Suppression'),MB_ICONASTERISK)
     end
 end;
-//FormCreate
-//Crée la form et modifie la grid pour qu'elle soit correctement affiché.
+
 procedure TForm2.FormCreate(Sender: TObject);
 begin
   fdqChanson.SQL.Clear;

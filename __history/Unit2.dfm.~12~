@@ -73,14 +73,14 @@ object Form2: TForm2
     Height = 21
     TabOrder = 2
   end
-  object btnAjout_chanson: TButton
+  object btnAjout_album: TButton
     Left = 654
     Top = 131
     Width = 88
     Height = 25
     Caption = 'Ajouter'
     TabOrder = 3
-    OnClick = btnAjout_chansonClick
+    OnClick = btnAjout_albumClick
   end
   object edtMinute: TEdit
     Left = 654

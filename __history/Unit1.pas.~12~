@@ -1,7 +1,7 @@
 unit Unit1;
 //Étienne Sévégny (1737508)
 //Unit 1
-//Affichage, création et suppression d'albums
+//Affichage, création et supression d'artistes
 interface
 
 uses
@@ -51,8 +51,7 @@ implementation
 {$R *.dfm}
 
 uses Unit3;
-//btnAjout_albumClick
-//Ajoute un album après vérification de données
+
 procedure TForm1.btnAjout_albumClick(Sender: TObject);
   var strAlbum_nom: string;
   var intAnnee: Integer;
@@ -79,14 +78,12 @@ begin
   else
     Application.MessageBox(PChar('Vous ne pouvez pas ajouter un album avec un nom ayant moins de 2 caractères. '),PChar('Erreur'),MB_ICONERROR);
 end;
-//btnReturnClick
-//Ferme la form
+
 procedure TForm1.btnReturnClick(Sender: TObject);
 begin
   Form1.Close;
 end;
-//btnSupprimerClick
-//Supprime l'album s'il ne contient pas de chansons.
+
 procedure TForm1.btnSupprimerClick(Sender: TObject);
 var strSupprimer:string;
 begin
@@ -112,15 +109,14 @@ begin
       end
     end
 end;
-//fdqAlbum_selectionClick
-//Affiche la form contenant les chansons de l'album
+
 procedure TForm1.fdqAlbum_selectionClick(Sender: TObject);
 Begin
-  if(gridAlbum.Fields[0].AsInteger = 0)then
+  IF(gridAlbum.Fields[0].AsInteger = 0)then
     begin
       Application.MessageBox(PChar('Vous ne pouvez pas sélectionner une ligne vide.'),PChar('Erreur'),MB_ICONERROR)
     end
-  else
+  ELSE
     begin
       Form3.intAlbum_id := gridAlbum.Fields[0].AsInteger;
       with TForm2.Create(nil) do
@@ -133,8 +129,7 @@ Begin
       end;
     end
 end;
-//FormCreate
-//Affiche la form et affiche la grid correctement
+
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   Form1.Caption := 'Albums';
